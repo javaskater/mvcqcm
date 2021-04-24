@@ -5,9 +5,20 @@ class User extends Model{
     {
         // Nous définissons la table par défaut de ce modèle
         $this->table[] = "personne";
+        $this->table[] = "classe";
     
         // Nous ouvrons la connexion à la base de données
         $this->getConnection();
+    }
+
+    /**
+     * Retourne une la liste des classes
+     */
+    public function findClasses(){
+        $sql = "SELECT * FROM ".$this->table[1]." order by id";
+        $query = $this->_connexion->prepare($sql);
+        $query->execute();
+        return $query->fetchAll();    
     }
 
     /**

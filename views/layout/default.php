@@ -29,7 +29,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="http://localhost/qcmcnam/profiles/gererProfile.php"><i class="fas fa-user"></i>&nbsp;<?php echo $personneConnectee['nom'];?><span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="<?=BASE_URL?>/users/profile"><i class="fas fa-user"></i>&nbsp;<?php echo $personneConnectee['nom'];?><span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="http://localhost/qcmcnam/qcmeleve/choixqcm.php">QCM</a>
@@ -39,7 +39,7 @@
         <a class="nav-link" href="http://localhost/qcmcnam/notes/consulterNotes.php">Notes</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0" action="../logout.php">
+    <form class="form-inline my-2 my-lg-0" action="users/logout">
         <button type="submit" class="btn btn-default btn-sm">
         <i class="fas fa-sign-out-alt"></i> Log out
         </button>
@@ -58,7 +58,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="http://localhost/qcmcnam/profiles/gererProfile.php"><i class="fas fa-user"></i>&nbsp;<?php echo $personneConnectee['nom'];?><span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="<?=BASE_URL?>/users/profile"><i class="fas fa-user"></i>&nbsp;<?php echo $personneConnectee['nom'];?><span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="http://localhost/qcmcnam/themes/gererThemes.php">Themes</a>
@@ -84,7 +84,7 @@
         </div>
       </li>    
     </ul>
-    <form class="form-inline my-2 my-lg-0" action="../logout.php">
+    <form class="form-inline my-2 my-lg-0" action="<?=BASE_URL?>/users/logout">
         <button type="submit" class="btn btn-default btn-sm">
         <i class="fas fa-sign-out-alt"></i> Log out
         </button>

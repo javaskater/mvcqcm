@@ -29,4 +29,22 @@ class Users extends Controller{
             header("Location:".BASE_URL."?error=vide");
         }
     }
+
+    public function profile($erreur = null){
+        // On instancie le modèle "Utilisateur"
+        session_start();
+        //var_dump($_SESSION);
+        $this->loadModel('User');
+        $classes = $this->User->findClasses();
+        //var_dump($classes);
+        $personneConnectee = $_SESSION['utilisateur'];
+        $this->render('profile', compact('classes','personneConnectee'));
+    }
+
+    public function logout(){
+        session_start();
+        unset($_SESSION['utilisateur']);
+        session_destroy();
+        header("Location:".BASE_URL);
+    }
 }
