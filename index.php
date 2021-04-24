@@ -1,6 +1,10 @@
 <?php
 // On génère une constante contenant le chemin vers la racine publique du projet
 define('ROOT', str_replace('index.php','',$_SERVER['SCRIPT_FILENAME']));
+$MVC_BASE_HTTP_DIR = 'http://'.$_SERVER['HTTP_HOST'].preg_replace ('\'/([^/]*)$\'','',$_SERVER['PHP_SELF']);
+//var_dump($_SERVER['PHP_SELF']);
+//var_dump($MVC_BASE_HTTP_DIR);
+define('BASE_URL',$MVC_BASE_HTTP_DIR);
 
 // On appelle le modèle et le contrôleur principaux
 require_once(ROOT.'app/Model.php');

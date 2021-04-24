@@ -2,16 +2,16 @@
 abstract class Model{
     // Informations de la base de données
     private $host = "localhost";
-    private $db_name = "mvc";
-    private $username = "root";
-    private $password = "";
+    private $db_name = "qcmcnam";
+    private $username = "qcmcnam";
+    private $password = "qcmcnam";
      
     // Propriété qui contiendra l'instance de la connexion
     protected $_connexion;
 
     // Propriétés permettant de personnaliser les requêtes
-    public $table;
-    public $id;
+    public $tables=array();
+    public $ids=array();
 
     /**
      * Fonction d'initialisation de la base de données
@@ -37,7 +37,7 @@ abstract class Model{
      * @return void
      */
     public function getOne(){
-        $sql = "SELECT * FROM ".$this->table." WHERE id=".$this->id;
+        $sql = "SELECT * FROM ".$this->tables[0]." WHERE id=".$this->ids[0];
         $query = $this->_connexion->prepare($sql);
         $query->execute();
         return $query->fetch();    
@@ -49,7 +49,7 @@ abstract class Model{
      * @return void
      */
     public function getAll(){
-        $sql = "SELECT * FROM ".$this->table;
+        $sql = "SELECT * FROM ".$this->tables[0];
         $query = $this->_connexion->prepare($sql);
         $query->execute();
         return $query->fetchAll();    
