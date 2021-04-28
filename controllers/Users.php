@@ -22,11 +22,11 @@ class Users extends Controller{
                 $_SESSION['utilisateur'] = $personneConnectee;
                 $this->render('index', compact('personneConnectee'));
             } else {
-                header("Location:".BASE_URL."?error=incorrect");
+                header("Location:".BASE_URL."/main/index/incorrect");
             }
             
         } else {
-            header("Location:".BASE_URL."?error=vide");
+            header("Location:".BASE_URL."/main/index/vide");
         }
     }
 
