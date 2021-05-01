@@ -1,4 +1,14 @@
 <div class="container">
+<?php
+        if (isset($typeErreur) && !empty($typeErreur)) {
+            echo "<div class=\"alert alert-danger\">";
+            echo "<strong>Erreur!</strong>";
+            if ($typeErreur == "vide") {
+                echo "veuillez entrer un label non vide pour votre thème";
+            }
+            echo "</div>";
+        }
+    ?>
 	<div class="row flex-xl-nowrap mt-2">
         <div class="col-12 col-md-3 col-xl-2">
             <form method="post" action="<?=BASE_URL?>/themes/ajouter">

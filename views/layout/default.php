@@ -61,10 +61,10 @@
         <a class="nav-link" href="<?=BASE_URL?>/users/profile"><i class="fas fa-user"></i>&nbsp;<?php echo $personneConnectee['nom'];?><span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="http://localhost/qcmcnam/themes/gererThemes.php">Themes</a>
+        <a class="nav-link" href="<?=BASE_URL?>/themes/index">Themes</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="http://localhost/qcmcnam/questions/gererQuestions.php">Questions Réponses</a>
+        <a class="nav-link" href="<?=BASE_URL?>/questions/index">Questions Réponses</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

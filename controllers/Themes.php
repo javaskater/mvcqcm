@@ -13,9 +13,13 @@ class Themes extends Controller{
         //on n'oublie pas les personnes connectées pour l'entête
         session_start();
         $personneConnectee = $_SESSION['utilisateur'];
-        
-        //TODO traiter cf. main le cas où param1 n'est pas vide
-        $this->render('index', compact('personneConnectee','lesThemes'));
+        //cas où param1 n'est pas vide
+        if (isset($param1) && !empty($param1)){
+            $typeErreur = $param1;
+            $this->render('index', compact('personneConnectee', 'typeErreur', 'lesThemes'));
+        } else {
+            $this->render('index', compact('personneConnectee','lesThemes'));
+        }
     }
 
     public function ajouter(){

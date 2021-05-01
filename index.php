@@ -28,12 +28,8 @@ if($params[0] != ""){
     $controller = new $controller();
 
     if(method_exists($controller, $action)){
-        if ($action != 'index'){
-            unset($params[0]);
-            unset($params[1]);
-        } else {
-            unset($params[0]);
-        }
+        unset($params[0]);
+        unset($params[1]);
         
         call_user_func_array([$controller,$action], $params);
         // On appelle la méthode
