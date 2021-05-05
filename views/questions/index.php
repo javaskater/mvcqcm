@@ -152,14 +152,17 @@ function addANumberOfFields(number){
 }
 function pageEnErreur(){
 	var enErreur = false;
-	var queryString = window.location.search;
-	if (queryString.length > 0){
-		var urlParams = new URLSearchParams(queryString);
-		var error = urlParams.get('error');
-		if (error != null && error.length > 0){
-			enErreur = true;
-		}
-	}
+    var url = new URL(window.location.href);
+    var nombreArguments = 0;
+    var pathArr = url.pathname.split('/');
+	pathArr.forEach(function(pathElt){
+        if (pathElt != ""){
+            nombreArguments++;
+        }
+    });
+    if (nombreArguments == 4){
+        enErreur = true;
+    }
 	return enErreur;
 }
 if (pageEnErreur()){

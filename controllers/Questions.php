@@ -54,7 +54,7 @@ class Questions extends Controller{
         }
         if ($enErreur){
             setcookie("postValues", json_encode($_POST));//on renvoie les valeurs POST au formulaire
-            header("Location:http://".BASE_URL."/questions/index/".$error);
+            header("Location:".BASE_URL."/questions/index/".$error);
         } else {
             unset($_COOKIE['postValues']);
             setcookie('postValues', '', time() - 3600, '/'); // empty value and old timestamp
@@ -73,7 +73,7 @@ class Questions extends Controller{
                 }
                 $this->Question->ajouterReponse($idNewQuestion, $texteReponse, $bonneReponse);
             }
-            header("Location:http://".BASE_URL."/questions/index/");
+            header("Location:".BASE_URL."/questions/index/");
         }
     }
 }
