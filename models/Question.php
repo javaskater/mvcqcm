@@ -23,6 +23,17 @@ class Question extends Model{
         return $query->fetchAll(PDO::FETCH_ASSOC);    
     }
 
+    public function findQuestionsByQcm($idQcm=null){
+        if ($idQcm == null){
+            $sql = "select id, texte from question order by id";
+        } else {
+            $sql = "select id, texte from question where id not in (select idQuestion from questionqcm where idQcm = ".$idQcm.") order by id";
+        }
+        $query = $this->_connexion->prepare($sql);
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function ajouterQuestion($idTheme, $idAuteur, $texte){
         $sql = "INSERT INTO ".$this->table[0]." (idTheme, idAuteur, texte) VALUES (?,?,?)";
         $this->_connexion->prepare($sql)->execute([$idTheme, $idAuteur, $texte]);

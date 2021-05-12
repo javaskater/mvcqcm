@@ -71,8 +71,8 @@
           QCM
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="http://localhost/qcmcnam/qcm/creerqcm.php">Créer un QCM</a>
-          <a class="dropdown-item" href="http://localhost/qcmcnam/qcm/publishqcm.php">Publier un QCM</a>
+          <a class="dropdown-item" href="<?=BASE_URL?>/qcms/creer">Créer un QCM</a>
+          <a class="dropdown-item" href="<?=BASE_URL?>/qcms/publish">Publier un QCM</a>
         </div>
       </li>
       <li class="nav-item dropdown">
