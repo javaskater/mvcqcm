@@ -33,10 +33,17 @@ class Qcm extends Model{
         }
     }
 
-    public function recupererQcms(){
+    public function recupererQcms($publie=null){
         $sql = "select * from qcm";
+        if ($publie != null){
+            $sql .= " where publie=?";
+        }
         $query = $this->_connexion->prepare($sql);
-        $query->execute();
+        if ($publie != null){
+            $query->execute([$publie]);
+        } else {
+            $query->execute();
+        }
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 

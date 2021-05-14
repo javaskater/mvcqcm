@@ -80,7 +80,7 @@
           Notes
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarNotesDropdown">
-          <a class="dropdown-item" href="http://localhost/qcmcnam/notes/gererNotes.php">Gérer Notes</a>
+          <a class="dropdown-item" href="<?=BASE_URL?>/notes/gerer">Gérer Notes</a>
         </div>
       </li>    
     </ul>

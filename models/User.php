@@ -28,10 +28,23 @@ class User extends Model{
      * @return void
      */
     public function findByEmail(string $email){
-        $sql = "SELECT * FROM ".$this->table[0]." WHERE `email`='".$email."'";
+        $sql = "SELECT * FROM ".$this->table[0]." WHERE `email`= ?";
         $query = $this->_connexion->prepare($sql);
-        $query->execute();
+        $query->execute([$email]);
         return $query->fetch(PDO::FETCH_ASSOC);    
+    }
+
+    /**
+     * Retourne une liste de personnes en fonction de son statut
+     *
+     * @param string $slug
+     * @return void
+     */
+    public function findByStatut(string $statut){
+        $sql = "SELECT * FROM ".$this->table[0]." WHERE `statut`= ?";
+        $query = $this->_connexion->prepare($sql);
+        $query->execute([$statut]);
+        return $query->fetchAll(PDO::FETCH_ASSOC);    
     }
 
 }
