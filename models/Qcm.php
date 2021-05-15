@@ -52,4 +52,12 @@ class Qcm extends Model{
         $nombreLigneModifiées = $this->_connexion->prepare($sql)->execute([$publie, $idQcm]);
         return $nombreLigneModifiées;
     }
+
+    public function totalQuestions($idQcm){
+        $sqlCount = "select count(idQuestion) as count from ".$this->tables[1]." where idQcm= ?";
+        $query = $this->_connexion->prepare($sqlCount);
+        $query->execute([$idQcm]);
+        return $query->fetch(PDO::FETCH_ASSOC);
+
+    }
 }

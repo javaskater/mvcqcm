@@ -1,7 +1,7 @@
 <div class="container-fluid">
 	<div class="row flex-xl-nowrap mt-2">
         <div class="col-12 col-md-3 col-xl-2">
-            <form method="post" action="gererNotes.php">
+            <form method="post" action="<?=BASE_URL?>/notes/gerer">
               <div class="form-group">
                 <label for="selectEleve">Choix de l'élève</label>
                 <select class="form-control" id="selectEleve" name="selectEleve">
@@ -29,28 +29,13 @@
 		</div>
 		<div class="col-12 col-md-6 col-xl-10">
 		<?php
-		$maConn = openconnection();
-		$sql = "select p.nom as nom, qcm.id as qcmid, qcm.libelle as libelle, n.note as note, n.id as id, n.publie as publie from personne p, qcm qcm, notes n ";
-        $sql .= "where n.idPersonne = p.id and n.idQcm = qcm.id";
-        if (isset($_POST["selectEleve"]) && !empty($_POST["selectEleve"])){
-            $eleveId = $_POST["selectEleve"];
-            $sql .= " and p.id = ".$eleveId;
-        }
-        if (isset($_POST["selectQcm"]) && !empty($_POST["selectQcm"])){
-            $qcmId = $_POST["selectQcm"];
-            $sql .= " and qcm.id = ".$qcmId;
-        }
-		//echo "$sql";
-		$result = mysqli_query($maConn,$sql) or die("requete lecture notes en erreur");
 		echo "<ul class=\"list-group\">";
-		while ($line = mysqli_fetch_assoc($result)){
-            $sqlCount = "select count(idQuestion) as count from questionqcm where idQcm=".$line['qcmid'];
-            $resultCount = mysqli_query($maConn,$sqlCount) or die("requete comptage questions en erreur");
-            if ($lineCount = mysqli_fetch_assoc($resultCount)){
-                $nbeQuestions = $lineCount['count'];
-                $msgPublication = $line['publie'] == 1?"publié":"non publié"; 
-		        echo "<li class=\"list-group-item\"><a href=\"#\" id=".$line['id']." class=\"openModal\">".$line['libelle']." (eléve:".$line['nom']."). Note: ".$line['note']."/".$nbeQuestions." ".$msgPublication."</li>";
- echo "<div class=\"modal fade\" data-backdrop=\"backdrop\" id=\"exampleModal".$line['id']."\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">";
+    for ($i = 0; $i < count($notesAAfficher); $i++){
+      $line = $notesAAfficher[$i];
+      $nbeQuestions = $nbeQuestionsArr[$i]['count'];
+      $msgPublication = $line['publie'] == 1?"publié":"non publié"; 
+		  echo "<li class=\"list-group-item\"><a href=\"#\" id=".$line['id']." class=\"openModal\">".$line['libelle']." (eléve:".$line['nom']."). Note: ".$line['note']."/".$nbeQuestions." ".$msgPublication."</li>";
+      echo "<div class=\"modal fade\" data-backdrop=\"backdrop\" id=\"exampleModal".$line['id']."\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">";
 ?>
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -79,11 +64,9 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 </div>
-<?php        }
-            mysqli_free_result($resultCount);
-        }
+<?php
+    }
 		echo "</ul>";
-		fermerConnection($result, $maConn);
         ?>
 		</div>
 	</div> <!-- fin du Row -->
