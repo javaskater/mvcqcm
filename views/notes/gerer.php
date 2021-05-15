@@ -43,7 +43,7 @@
         <h4 class="modal-title">Modal title</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
-      <form method="POST" action="updateNote.php">
+      <form method="POST" action="<?=BASE_URL?>/notes/update">
       <div class="modal-body">
       <?php 
         echo "<div class=\"form-group\">";
@@ -51,7 +51,7 @@
         echo "<input type=\"checkbox\" id=\"publierElement\" name=\"publication\"";
         $pub = $line['publie'] == 1?"checked":""; 
         echo " ".$pub." />";
-        echo "<input type=\"hidden\" name=\"nodeId\" value=".$line['id']." />";
+        echo "<input type=\"hidden\" name=\"noteId\" value=".$line['id']." />";
         echo "</div>";
        ?>
       </div>

@@ -31,4 +31,23 @@ class Note extends Model{
         $query->execute([]);
         return $query->fetchAll(PDO::FETCH_ASSOC);    
     }
+
+    /**
+     * Retourne une note particulière
+     */
+    public function findNote($noteId){
+        $sql = "select p.email as email, n.note as note, q.libelle as titreQcm, q.id as qcmId ";
+        $sql .= "from ".$this->table[1]." p, ".$this->table[2]." q, ".$this->table[0]." n ";
+        $sql .= "where n.idQcm = q.id and n.idPersonne = p.id and n.id=?";
+        //echo "sql vaut".$sql;
+        $query = $this->_connexion->prepare($sql);
+        $query->execute([$noteId]);
+        return $query->fetch(PDO::FETCH_ASSOC);    
+    }
+
+    public function publierNote($idNote, $publie){
+        $sql = "update notes set publie=? where id=?";
+        $nombreLigneModifiées = $this->_connexion->prepare($sql)->execute([$publie, $idNote]);
+        return $nombreLigneModifiées;
+    }
 }
