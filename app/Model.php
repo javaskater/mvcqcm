@@ -3,8 +3,8 @@ abstract class Model{
     // Informations de la base de données
     private $host = "localhost";
     private $db_name = "qcmcnam";
-    private $username = "qcmcnam";
-    private $password = "qcmcnam";
+    private $username = "root";
+    private $password = "root";
      
     // Propriété qui contiendra l'instance de la connexion
     protected $_connexion;
